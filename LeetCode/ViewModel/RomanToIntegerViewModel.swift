@@ -34,7 +34,7 @@ class LeetViewModel: ObservableObject {
         
         let validValues: [Character] = ["I", "V", "X", "L", "C", "D", "M"]
         
-        let nums: [String:Int] = ["I":1,
+        let nums: [Character:Int] = ["I":1,
                                   "V":5,
                                   "X":10,
                                   "L":50,
@@ -46,11 +46,11 @@ class LeetViewModel: ObservableObject {
         
         var values: [Int] = [Int]()
         
-        for value in numberToArabic {
+        for value in uppercasedValue {
             let newValue = value.uppercased()
             
-            if validValues.contains(newValue) {
-                let num = nums[newValue]!
+            if validValues.contains(value) {
+                let num = nums[value]!
                 values.append(num)
             }
         }
