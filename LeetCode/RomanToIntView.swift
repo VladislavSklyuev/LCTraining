@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct LeetView: View {
+struct RomanToIntView: View {
     
-    @StateObject var viewModel = LeetViewModel()
+    @StateObject var viewModel = RomanToIntegerViewModel()
     @State private var str = ""
     
     
@@ -24,17 +24,15 @@ struct LeetView: View {
                 .padding()
             
             Button {
-                viewModel.convertRoman(numberToAramic: str)
+                viewModel.convertRoman(numberToArabic: str)
             } label: {
                 Text("Преобразовать число")
                     .foregroundStyle(.green)
                     .bold()
             }
         }
+        .alert("Некорректный ввод", isPresented: $viewModel.showAnAlertAboutIncorrectInput) {
+        }
         
     }
-}
-
-#Preview {
-    LeetView()
 }

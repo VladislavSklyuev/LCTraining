@@ -25,10 +25,11 @@ import Foundation
  "III", "LVIII", "M CM XC IV" - 1000, 900, 90, 4
  */
 
-class LeetViewModel: ObservableObject {
+class RomanToIntegerViewModel: ObservableObject {
     
     @Published var num = 0
     @Published var showAlert = false
+    @Published var showAnAlertAboutIncorrectInput = false
     
     func convertRoman(numberToArabic: String) {
         
@@ -47,12 +48,10 @@ class LeetViewModel: ObservableObject {
         var values: [Int] = [Int]()
         
         for value in uppercasedValue {
-            let newValue = value.uppercased()
-            
             if validValues.contains(value) {
                 let num = nums[value]!
                 values.append(num)
-            }
+            } else { showAnAlertAboutIncorrectInput = true }
         }
         //print("Raw values: \(values)")
         let valuesCount = values.count
@@ -61,12 +60,9 @@ class LeetViewModel: ObservableObject {
             switch element {
                 
             case 1:
-                let newArrayPrefix = Array(values.prefix(valuesCount))
-                
                 var sum = 0
                 
-                for i in newArrayPrefix {
-                    
+                for i in values {
                     if i == 1 {
                         sum += 1
                     }
@@ -84,6 +80,7 @@ class LeetViewModel: ObservableObject {
                     break
                 } else {
                     self.num = 0
+                    showAnAlertAboutIncorrectInput = true
                     return
                 }
             case 5:
